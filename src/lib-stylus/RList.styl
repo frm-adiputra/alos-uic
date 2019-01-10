@@ -1,0 +1,91 @@
+.r-list
+    padding: 8px 0
+    // padding: 56px 0 8px 0
+
+    display: flex
+    flex-direction: column
+    flex-wrap: nowrap
+    position: relative
+
+    background-color: white
+
+    .r-list__header
+        padding: 0 16px
+
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        align-items: baseline
+
+        // position: absolute
+        // top: 8px
+        // right: 0
+
+
+        .r-list__header-text
+            padding: 0 16px 0 0
+
+            line-height: 48px
+            font-size: 16px
+            letter-spacing: 0.5px
+            font-weight: bold
+
+            white-space: nowrap
+            overflow: hidden
+            text-overflow: ellipsis
+
+        .r-list__header-text:last-child
+            padding: 0
+
+    .r-list__row
+        padding: 0 16px
+
+        display: flex
+        flex-direction: row
+        flex-wrap: nowrap
+        align-items: baseline
+
+        .r-list__row-header
+            display: flex
+            flex-direction: row
+            flex-wrap: nowrap
+            align-items: baseline
+
+            .r-list__icon
+                margin-right: 32px
+                align-self: center
+
+            .r-list__title
+                margin: 0 16px 0 0
+                line-height: 48px
+                font-size: 16px
+                letter-spacing: 0.5px
+
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
+
+        .r-list__content
+            margin: 0 16px 0 0
+
+            .r-list__content-text
+                white-space: nowrap
+                overflow: hidden
+                text-overflow: ellipsis
+
+        .r-list__content:last-child
+            margin: 0
+
+
+
+// // r-list with icon
+// .r-list--icon
+
+// // r-list with avatar
+// .r-list--avatar
+
+// // r-list with image
+// .r-list--img
+
+// // r-list with wide image
+// .r-list--wide-img

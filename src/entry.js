@@ -1,5 +1,6 @@
 // Import vue components
 import * as components from './lib-components/index';
+import * as directives from './lib-directives/index';
 
 // install function executed by Vue.use()
 function install(Vue) {
@@ -7,6 +8,9 @@ function install(Vue) {
   install.installed = true;
   Object.keys(components).forEach((componentName) => {
     Vue.component(componentName, components[componentName]);
+  });
+  Object.keys(directives).forEach((directiveName) => {
+    Vue.directive(directiveName, directives[directiveName]);
   });
 }
 
@@ -29,3 +33,4 @@ if (GlobalVue) {
 
 // To allow use as module (npm/webpack/etc.) export components
 export * from './lib-components/index';
+export * from './lib-directives/index';
