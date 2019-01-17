@@ -35,7 +35,11 @@ export default {
 		actionFn() {
 			if (this.msg && this.msg.actionFn) {
 				this.msg.actionFn()
-				clearTimeout(this.timeoutId)
+
+				if (this.timeoutId != null) {
+					clearTimeout(this.timeoutId)
+				}
+
 				this.visible = false
 				this.currResolve()
 			}
@@ -46,12 +50,19 @@ export default {
 					this.msg = msg
 					this.visible = true
 					return new Promise(resolve => {
-						const timeout = msg.timeout || 6000
+						const timeout =
+							msg.timeout === null || msg.timeout === undefined
+								? 6000
+								: msg.timeout
 						this.currResolve = resolve
-						this.timeoutId = setTimeout(() => {
-							this.visible = false
-							resolve()
-						}, timeout)
+						if (timeout > 0) {
+							this.timeoutId = setTimeout(() => {
+								this.visible = false
+								resolve()
+							}, timeout)
+						} else {
+							this.timeoutId = null
+						}
 					})
 				})
 				.then(() => {
