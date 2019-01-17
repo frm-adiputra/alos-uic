@@ -1,2 +1,2 @@
 /* eslint-disable import/prefer-default-export */
-export { default as AlosUicSample } from './alos-uic-sample.vue';
+export { default as ASnackbar } from './ASnackbar.vue';
