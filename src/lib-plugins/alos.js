@@ -1,5 +1,7 @@
 const install = Vue => {
 	const eventBus = new Vue()
+	const dialogStack = []
+
 	const snackbar = ({ multiline, timeout, text, actionLabel, actionFn }) => {
 		eventBus.$emit('snackbar', {
 			multiline,
@@ -24,7 +26,7 @@ const install = Vue => {
 		persistent,
 		maxWidth
 	}) => {
-		eventBus.$emit('alertDialog', {
+		eventBus.$emit('alert-dialog', {
 			message,
 			title,
 			ok,
@@ -39,6 +41,17 @@ const install = Vue => {
 			maxWidth
 		})
 	}
+
+	eventBus.$on('open-dialog', closeCb => {
+		dialogStack.push(closeCb)
+	})
+
+	eventBus.$on('close-dialog', () => {
+		const cb = dialogStack.pop()
+		if (cb) {
+			cb()
+		}
+	})
 
 	Vue.prototype.$a = {
 		snackbar,

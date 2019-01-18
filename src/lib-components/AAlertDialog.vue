@@ -22,6 +22,8 @@ export default {
 	name: 'AAlertDialog',
 	data() {
 		return {
+			queue: Promise.resolve(),
+			currResolve: null,
 			visible: false,
 			dialogResult: null,
 			ok: null,
@@ -45,10 +47,10 @@ export default {
 		}
 	},
 	created() {
-		this.$a._eventBus.$on('alertDialog', this.updateData)
+		this.$a._eventBus.$on('alert-dialog', this.queueDialog)
 	},
 	destroyed() {
-		this.$a._eventBus.$off('alertDialog', this.updateData)
+		this.$a._eventBus.$off('alert-dialog', this.queueDialog)
 	},
 	methods: {
 		updateData({
@@ -79,6 +81,14 @@ export default {
 			this.maxWidth = maxWidth
 			this.visible = true
 		},
+		queueDialog(dlg) {
+			this.queue = this.queue.then(() => {
+				return new Promise(resolve => {
+					this.updateData(dlg)
+					this.currResolve = resolve
+				})
+			})
+		},
 		doOk() {
 			this.dialogResult = 'ok'
 			this.visible = false
@@ -92,6 +102,9 @@ export default {
 		visible(newVal) {
 			if (newVal) {
 				this.dialogResult = null
+				// this.$a._eventBus.$emit('open-dialog', () => {
+				// 	this.visible = false
+				// })
 			} else {
 				if (this.dialogResult == 'ok') {
 					if (this.onOk) {
@@ -111,6 +124,13 @@ export default {
 							this.onCancel()
 						}
 					}
+				}
+
+				if (this.currResolve) {
+					setTimeout(() => {
+						this.currResolve()
+						this.currResolve = null
+					}, 1000)
 				}
 			}
 		}
