@@ -78,7 +78,7 @@ export default {
 		}
 	},
 	created() {
-		this._alosEventBus.$on('msg', this.addMsg)
+		this.$a._eventBus.$on('snackbar', this.addMsg)
 	},
 	destroyed() {
 		this.$snackbar._eventBus.$off('msg', this.addMsg)

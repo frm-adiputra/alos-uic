@@ -1,11 +1,22 @@
 const install = Vue => {
 	const eventBus = new Vue()
 	const snackbar = ({ multiline, timeout, text, actionLabel, actionFn }) => {
-		eventBus.$emit('msg', { multiline, timeout, text, actionLabel, actionFn })
+		eventBus.$emit('snackbar', {
+			multiline,
+			timeout,
+			text,
+			actionLabel,
+			actionFn
+		})
 	}
 
-	Vue.prototype._alosEventBus = eventBus
-	Vue.prototype.$snackbar = snackbar
+	const alertDialog = () => {}
+
+	Vue.prototype.$a = {
+		snackbar,
+		alertDialog,
+		_eventBus: eventBus
+	}
 }
 
 export default {
