@@ -81,7 +81,7 @@ export default {
 		this.$a._eventBus.$on('snackbar', this.addMsg)
 	},
 	destroyed() {
-		this.$snackbar._eventBus.$off('msg', this.addMsg)
+		this.$a._eventBus.$off('snackbar', this.addMsg)
 	}
 }
 </script>

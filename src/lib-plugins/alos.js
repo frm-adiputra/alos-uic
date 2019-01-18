@@ -10,7 +10,35 @@ const install = Vue => {
 		})
 	}
 
-	const alertDialog = () => {}
+	const alertDialog = ({
+		message,
+		title,
+		ok,
+		cancel,
+		onOk,
+		onCancel,
+		width,
+		dark,
+		light,
+		disabled,
+		persistent,
+		maxWidth
+	}) => {
+		eventBus.$emit('alertDialog', {
+			message,
+			title,
+			ok,
+			cancel,
+			onOk,
+			onCancel,
+			width,
+			dark,
+			light,
+			disabled,
+			persistent,
+			maxWidth
+		})
+	}
 
 	Vue.prototype.$a = {
 		snackbar,
