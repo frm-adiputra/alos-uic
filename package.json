@@ -25,10 +25,12 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
+    "cuid": "^2.1.4",
     "minimist": "^1.2.0",
     "pug": "^2.0.3",
     "rollup": "^0.67.4",
     "rollup-plugin-buble": "^0.19.6",
+    "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-uglify-es": "0.0.1",
     "rollup-plugin-vue": "^4.3.2",

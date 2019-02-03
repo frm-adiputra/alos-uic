@@ -1,6 +1,7 @@
+import $alos from '../globals.js'
+
 const install = Vue => {
 	const eventBus = new Vue()
-	const dialogStack = []
 
 	const snackbar = ({ multiline, timeout, text, actionLabel, actionFn }) => {
 		eventBus.$emit('snackbar', {
@@ -42,16 +43,9 @@ const install = Vue => {
 		})
 	}
 
-	eventBus.$on('open-dialog', closeCb => {
-		dialogStack.push(closeCb)
-	})
+	eventBus.$on('open-dialog', $alos._onOpenDialog)
 
-	eventBus.$on('close-dialog', () => {
-		const cb = dialogStack.pop()
-		if (cb) {
-			cb()
-		}
-	})
+	eventBus.$on('close-dialog', $alos._onCloseDialog)
 
 	Vue.prototype.$a = {
 		snackbar,
