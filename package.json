@@ -18,25 +18,25 @@
     "build:unpkg": "cross-env NODE_ENV=production rollup --config build/rollup.config.js --format iife --file dist/alos-uic.min.js"
   },
   "dependencies": {
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.12.0",
-    "eslint-plugin-vue": "^5.1.0"
   },
   "devDependencies": {
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
     "cross-env": "^5.2.0",
     "cuid": "^2.1.4",
+    "eslint-plugin-vue": "^5.1.0",
+    "eslint": "^5.12.0",
     "minimist": "^1.2.0",
     "pug": "^2.0.3",
-    "rollup": "^0.67.4",
     "rollup-plugin-buble": "^0.19.6",
     "rollup-plugin-node-resolve": "^4.0.0",
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-uglify-es": "0.0.1",
     "rollup-plugin-vue": "^4.3.2",
+    "rollup": "^0.67.4",
     "stylus": "^0.54.5",
-    "vue": "^2.5.21",
-    "vue-template-compiler": "^2.5.21"
+    "vue-template-compiler": "^2.5.21",
+    "vue": "^2.5.21"
   },
   "eslintConfig": {
     "root": true,
