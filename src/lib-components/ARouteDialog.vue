@@ -6,6 +6,8 @@ v-dialog(:value="dlg" @input="dlgChanged($event)"
 	:disabled="disabled"
 	:persistent="persistent"
 	:max-width="maxWidth"
+	:scrollable="scrollable"
+	:fullscreen="fullscreen"
 )
 	slot
 </template>
@@ -13,7 +15,7 @@ v-dialog(:value="dlg" @input="dlgChanged($event)"
 <script>
 export default {
 	name: 'ARouteDialog',
-	props: ['width', 'dark', 'light', 'disabled', 'persistent', 'maxWidth'],
+	props: ['width', 'dark', 'light', 'disabled', 'persistent', 'maxWidth', 'scrollable', 'fullscreen'],
 	data() {
 		return {
 			dlg: false
