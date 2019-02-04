@@ -1,5 +1,5 @@
 <template lang="pug">
-v-dialog(:value="dlg" @input="dlgChanged($event)"
+v-dialog(:value="dlg" @input="internalChanged($event)"
 	:width="width"
 	:dark="dark"
 	:light="light"
@@ -15,22 +15,29 @@ v-dialog(:value="dlg" @input="dlgChanged($event)"
 <script>
 export default {
 	name: 'ARouteDialog',
-	props: ['width', 'dark', 'light', 'disabled', 'persistent', 'maxWidth', 'scrollable', 'fullscreen'],
+	props: ['width', 'dark', 'light', 'disabled', 'persistent', 'maxWidth', 'scrollable', 'fullscreen', 'value'],
 	data() {
 		return {
 			dlg: false
 		}
 	},
 	methods: {
-		dlgChanged(value) {
+		internalChanged(value) {
 			this.dlg = value
-			if (!value) {
-				this.$router.back()
-			}
+			this.$emit('input', value)
 		}
 	},
 	mounted() {
 		this.dlg = true
+		this.$emit('input', true)
+	},
+	watch: {
+		value(newValue) {
+			this.dlg = newValue
+			if (!newValue) {
+				this.$router.back()
+			}
+		}
 	}
 }
 </script>
