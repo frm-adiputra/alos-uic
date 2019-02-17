@@ -34,14 +34,13 @@ export default {
     },
     watch: {
         value(newValue) {
-            console.log('ADialog.value', newValue)
             this.dialog = newValue
             if (newValue) {
                 this.id = cuid()
                 this.$a._eventBus.$emit('open-dialog', {id: this.id, close: this.closeDialog})
             } else {
-                this.id = null
                 this.$a._eventBus.$emit('close-dialog', this.id)
+                this.id = null
             }
         }
     }

@@ -10,6 +10,8 @@ const _onCloseDialog = id => {
 	})
 	if (idx != -1) {
 		dialogStack.splice(idx, 1)
+	} else {
+		console.error('unknown dialog id:', id)
 	}
 }
 
