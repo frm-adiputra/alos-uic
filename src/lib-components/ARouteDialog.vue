@@ -15,7 +15,20 @@ v-dialog(:value="dlg" @input="internalChanged($event)"
 <script>
 export default {
 	name: 'ARouteDialog',
-	props: ['width', 'dark', 'light', 'disabled', 'persistent', 'maxWidth', 'scrollable', 'fullscreen'],
+	props: {
+		width: [Number, String],
+		dark: Boolean,
+		light: Boolean,
+		disabled: Boolean,
+		persistent: Boolean,
+		maxWidth: [Number, String],
+		scrollable: Boolean,
+		fullscreen: Boolean,
+		value: {
+			type: Boolean,
+			required: true
+		}
+	},
 	data() {
 		return {
 			dlg: false
@@ -24,13 +37,20 @@ export default {
 	methods: {
 		internalChanged(value) {
 			this.dlg = value
-			if (!value) {
-				this.$router.back()
-			}
+			this.$emit('input', value)
 		}
 	},
 	mounted() {
 		this.dlg = true
+		this.$emit('input', true)
+	},
+	watch: {
+		value(newValue) {
+			this.dlg = newValue
+			if (!newValue) {
+				this.$router.back()
+			}
+		}
 	}
 }
 </script>
